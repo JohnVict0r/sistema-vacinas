@@ -46,7 +46,7 @@ def uf_list(request):
         return Response(serializer.data)
 
 @api_view(['GET', 'POST'])
-def municipios(request, cod):
+def municipios(request):
     """
     List all code snippets, or create a new snippet.
     """
