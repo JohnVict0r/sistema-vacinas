@@ -41,7 +41,7 @@ class UserVaccinesSerializer(serializers.HyperlinkedModelSerializer):
 class AgendamentoSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(read_only=True)
     vaccine = serializers.PrimaryKeyRelatedField(read_only=True)
-    horario = serializers.RelatedField(read_only=True)
+    horario = serializers.ReadOnlyField(source='EstabelecimentoAtendimento.estabelecimento.no_fantasia')
 
     class Meta:
         model = Agendamento
