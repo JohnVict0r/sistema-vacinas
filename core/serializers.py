@@ -1,4 +1,4 @@
-from .models import User, Vaccine, User_Vaccine, Agendamento, EstabelecimentoAtendimento, Uf, Municipio
+from .models import User, Vaccine, User_Vaccine, Agendamento, Estabelecimento, EstabelecimentoAtendimento, Uf, Municipio
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 
@@ -66,3 +66,9 @@ class MunicipioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Municipio
         fields = ['cod', 'name', 'cod_uf']
+
+class EstabelecimentoSerializer(serializers.ModelSerializer):
+    co_municipio_gestor = serializers.PrimaryKeyRelatedField(read_only=True)
+    class Meta:
+        model = Estabelecimento
+        fields = ['co_unidade', 'co_cnes', 'no_razao_social', 'no_fantasia', 'co_municipio_gestor' ]

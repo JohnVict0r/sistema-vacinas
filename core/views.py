@@ -2,12 +2,13 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import viewsets, permissions, status, filters
 
-from .models import User, Vaccine, User_Vaccine, Agendamento, EstabelecimentoAtendimento, Uf, Municipio
+from .models import User, Vaccine, User_Vaccine, Agendamento, Estabelecimento, EstabelecimentoAtendimento, Uf, Municipio
 from .serializers import (
     UserSerializer, 
     VaccineSerializer, 
     UserVaccinesSerializer, 
     AgendamentoSerializer, 
+    EstabelecimentoSerializer,
     EstabelecimentoAtendimentosSerializer,
     UfSerializer,
     MunicipioSerializer
@@ -45,7 +46,7 @@ def uf_list(request):
         serializer = UfSerializer(ufs, many=True)
         return Response(serializer.data)
 
-@api_view(['GET', 'POST'])
+@api_view(['GET'])
 def municipios(request):
     """
     List all code snippets, or create a new snippet.
@@ -54,6 +55,17 @@ def municipios(request):
         municipios = Municipio.objects.all()
         serializer = MunicipioSerializer(municipios, many=True)
         return Response(serializer.data)
+
+@api_view(['GET'])
+def estabelecimentos(request):
+    """
+    List all code snippets, or create a new snippet.
+    """
+    if request.method == 'GET':
+        estabelecimentos = Estabelecimento.objects.all()
+        serializer = EstabelecimentoSerializer(estabelecimentos, many=True)
+        return Response(serializer.data)
+
 
 @api_view(['GET', 'POST'])
 def user_vaccines(request):
