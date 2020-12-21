@@ -90,6 +90,9 @@ class EstabelecimentoAtendimento(models.Model):
     horario = models.DateTimeField()
     vagas = models.IntegerField(default=10)
 
+    def __str__(self):
+        return f'{self.estabelecimento} - {self.horario}'
+
 class Agendamento(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     vacina = models.ForeignKey(Vaccine, on_delete=models.CASCADE)
