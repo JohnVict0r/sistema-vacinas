@@ -49,8 +49,8 @@ class Municipio(models.Model):
         return f'{self.cod} - {self.name}'
 
 class Estabelecimento(models.Model):
-    co_unidade = models.IntegerField(primary_key=True)
-    co_cnes = models.IntegerField()
+    co_unidade = models.BigIntegerField(primary_key=True)
+    co_cnes = models.BigIntegerField()
     nu_cnpj = models.CharField(max_length=15, blank=True, null=False)
     no_razao_social = models.CharField(max_length=255, blank=True, null=False)
     no_fantasia = models.CharField(max_length=255, blank=True, null=False)

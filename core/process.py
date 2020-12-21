@@ -35,8 +35,7 @@ class EstabelecimentoImporter:
             self.data = csv.DictReader(arquivo_csv, delimiter=',')
             for coluna in self.data:
                 municipio = Municipio.objects.filter(pk=coluna['CO_MUNICIPIO_GESTOR']).first()
-                if municipio== None:
-                    municipio=Municipio.objects.all().first()
+                
                 estabelecimento, created = Estabelecimento.objects.get_or_create(
                     co_unidade = coluna['CO_UNIDADE'],
                     co_cnes = coluna['CO_CNES'],
@@ -56,7 +55,7 @@ class EstabelecimentoImporter:
                 
         
 class ImportingManager(object):
-    IMPORTERS = [EstabelecimentoImporter]
+    IMPORTERS = [IBGEImporter,EstabelecimentoImporter]
 
     def __init__(self):
         logging.info(f'{self.__class__.__name__} inicializando...')
