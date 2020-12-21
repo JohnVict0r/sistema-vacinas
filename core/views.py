@@ -26,6 +26,19 @@ def auth(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['GET'])
+def profile(request):
+    """
+    List all code snippets, or create a new snippet.
+    """
+    if not request.user.is_authenticated:
+        return Response(data={"message":"Usuário não autenticado"}, status=status.HTTP_401_UNAUTHORIZED)
+
+    if request.method == 'GET':
+        user = User.objects.filter(pk=request.user.id)
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+
 @api_view(['GET', 'POST'])
 def vaccines(request):
     """

@@ -19,7 +19,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'password')
+        fields = ('id', 'username', 'email', 'password', 'is_patient', 'is_professional_health')
         write_only_fields = ('password',)
         read_only_fields = ('id',)
 
@@ -39,7 +39,7 @@ class UserVaccinesSerializer(serializers.HyperlinkedModelSerializer):
         read_only_fields = ('id',)
 
 class AgendamentoSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(read_only=True)
+    user = serializers.StringRelatedField(read_only=True)
     vaccine = serializers.PrimaryKeyRelatedField(read_only=True)
     horario = serializers.StringRelatedField(read_only=True)
 
