@@ -91,7 +91,7 @@ class EstabelecimentoAtendimento(models.Model):
     vagas = models.IntegerField(default=10)
 
     def __str__(self):
-        return f'{self.estabelecimento} - {self.horario}'
+        return f'{self.estabelecimento} - {self.horario.strftime('%Y-%m-%d %H:%M')}'
 
 class Agendamento(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
