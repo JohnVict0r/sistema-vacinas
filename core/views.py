@@ -76,6 +76,33 @@ def user_vaccines(request):
         serializer = UserVaccinesSerializer(user_vaccine)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+@api_view(['GET', 'POST'])
+def user_agendamentos(request):
+    """
+    List all code snippets, or create a new snippet.
+    """
+    if not request.user.is_authenticated:
+        return Response(data={"message":"Usuário não autenticado"}, status=status.HTTP_401_UNAUTHORIZED)
+
+    if request.method == 'GET':
+        user_agendamentos = Agendamento.objects.filter(user=request.user)
+        serializer = AgendamentoSerializer(user_agendamentos, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    if request.method == 'POST':
+        vaccine = Vaccine.objects.get(pk=request.data['vaccine'])
+        horario = EstabelecimentoAtendimento.objects.get(pk=request.data['horario'])
+
+        user_agendamento = Agendamento.objects.create(
+            user=request.user, 
+            vacina=vaccine,
+            horario=horario
+            )
+
+        serializer = AgendamentoSerializer(user_agendamento)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
 @api_view(['POST'])
 def pacient_vaccines(request):
     """
