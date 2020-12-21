@@ -17,4 +17,6 @@ urlpatterns = [
     path('vaccines/<int:pk>', views.vaccines),
     path('agendamentos/', views.agendamentos),
     path('atendimentos/', views.atendimentos),
+    path('ufs', view.uf_list),
+    path('municipios', view.municipios),
     ]

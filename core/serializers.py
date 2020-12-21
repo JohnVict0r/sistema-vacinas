@@ -55,3 +55,14 @@ class EstabelecimentoAtendimentosSerializer(serializers.ModelSerializer):
     class Meta:
         model = EstabelecimentoAtendimento
         fields = ['id', 'estabelecimento', 'horario', 'vagas']
+
+class UfSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EstabelecimentoAtendimento
+        fields = ['cod', 'name']
+
+class MunicipioSerializer(serializers.ModelSerializer):
+    cod_uf = serializers.PrimaryKeyRelatedField(read_only=True)
+    class Meta:
+        model = EstabelecimentoAtendimento
+        fields = ['cod', 'name', 'cod_uf']

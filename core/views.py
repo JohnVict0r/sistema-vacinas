@@ -2,21 +2,16 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import viewsets, permissions, status, filters
 
-from .models import User, Vaccine, User_Vaccine, Agendamento, EstabelecimentoAtendimento
-from .serializers import UserSerializer, VaccineSerializer, UserVaccinesSerializer, AgendamentoSerializer, EstabelecimentoAtendimentosSerializer
-
-
-""" class AgendamentoViewSet(viewsets.ModelViewSet):
-    serializer_class = AgendamentoSerializer
-    queryset = Agendamento.objects.all()
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['atendido']
-    permission_classes = [permissions.IsAuthenticated]
-
-    def update(self, request, pk=None):
-        agendamento = self.get_object()
-        agendamento.atendido= True
-        agendamento.save() """
+from .models import User, Vaccine, User_Vaccine, Agendamento, EstabelecimentoAtendimento, Uf, Municipio
+from .serializers import (
+    UserSerializer, 
+    VaccineSerializer, 
+    UserVaccinesSerializer, 
+    AgendamentoSerializer, 
+    EstabelecimentoAtendimentosSerializer,
+    UfSerializer,
+    MunicipioSerializer
+    )
 
 @api_view(['POST'])
 def auth(request):
@@ -40,12 +35,25 @@ def vaccines(request):
         serializer = VaccineSerializer(vaccines, many=True)
         return Response(serializer.data)
 
-    """ elif request.method == 'POST':
-        serializer = SnippetSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) """
+@api_view(['GET'])
+def uf_list(request):
+    """
+    List all code snippets, or create a new snippet.
+    """
+    if request.method == 'GET':
+        ufs = Uf.objects.all()
+        serializer = UfSerializer(ufs, many=True)
+        return Response(serializer.data)
+
+@api_view(['GET', 'POST'])
+def municipios(request, cod):
+    """
+    List all code snippets, or create a new snippet.
+    """
+    if request.method == 'GET':
+        municipios = Municipio.objects.all()
+        serializer = MunicipioSerializer(municipios, many=True)
+        return Response(serializer.data)
 
 @api_view(['GET', 'POST'])
 def user_vaccines(request):
