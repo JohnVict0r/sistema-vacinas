@@ -34,8 +34,9 @@ class EstabelecimentoImporter:
         with open('core/data/estabelecimentos_saude.csv', 'r') as arquivo_csv:
             self.data = csv.DictReader(arquivo_csv, delimiter=',')
             for coluna in self.data:
-                municipio = Municipio.objects.filter(pk=coluna['CO_MUNICIPIO_GESTOR'])
-
+                municipio = Municipio.objects.filter(pk=coluna['CO_MUNICIPIO_GESTOR']).first()
+                if municipio== None:
+                    municipio=Municipio.objects.all().first()
                 estabelecimento, created = Estabelecimento.objects.get_or_create(
                     co_unidade = coluna['CO_UNIDADE'],
                     co_cnes = coluna['CO_CNES'],
