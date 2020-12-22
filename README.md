@@ -41,6 +41,12 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 Elaborar uma aplicação que consiste em uma carteira digital de vacinação integrada com as redes de atenção à saúde, onde o usuário do Sistema Único de Saúde (SUS) poderá realizar o autocadastro e ser vacinado em qualquer estabelecimento de
 saúde que tenha disponibilidade de vacinas.
 
+## 🤔 Como testar
+
+- Usuário(Gestor do SUS): Administrador do Django
+- Usuário(Profissional de saúde): profissional e senha: pteste123
+- Usuário(Paciente): teste e senha: 12345678
+
 ## 🤔 Como contribuir
 
 - Faça um fork desse repositório;
