@@ -41,8 +41,25 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 Elaborar uma aplicação que consiste em uma carteira digital de vacinação integrada com as redes de atenção à saúde, onde o usuário do Sistema Único de Saúde (SUS) poderá realizar o autocadastro e ser vacinado em qualquer estabelecimento de
 saúde que tenha disponibilidade de vacinas.
 
-## 🤔 Como testar
+## Configuração
 
+Clone o projeto e execute os seguintes comandos:
+
+```shell
+$ git clone [(https://github.com/JohnVict0r/sistema-vacinas.git)](https://github.com/JohnVict0r/sistema-vacinas.git)
+$ cd sistema-vacinas
+$ pip install -r requirements.txt
+$ cp .env.example .env
+$ python manage.py migrate
+$ python manage.py importar_municipios_ibge
+$ python manage.py runserver
+```
+
+Altere o arquivo .env com suas configurações locais, como por exemplo, as informações do banco de dados (DB_HOST, DB_NAME, DB_USERNAME, DB_PASSWORD, etc)
+
+Inicie o servidor e acesse o sistema 🤞🙏⏱👍
+
+## 🤔 Como testar
 
 - [Cartão de vacina digital - Frontend](https://cartao-de-vacinas-digital.netlify.app/)
 - Usuário(Gestor do SUS): Administrador do Django
