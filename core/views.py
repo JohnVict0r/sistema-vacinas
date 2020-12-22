@@ -214,6 +214,13 @@ def agendamentos(request):
         serializer = AgendamentoSerializer(agendamentos, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+    if request.method == 'PUT':
+        agendamento = Agendamento.objects.filter(pk=request.data['id']).first()
+        agendamento.atendido = True
+        agendamento.save()
+        serializer = AgendamentoSerializer(agendamentos)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
     if request.method == 'POST':
         """ 
         serializer = UserVaccinesSerializer(data=request.data, many=True) """
