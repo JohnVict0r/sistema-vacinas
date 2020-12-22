@@ -38,6 +38,19 @@ def profile(request):
         serializer = UserSerializer(request.user)
         return Response(serializer.data)
 
+@api_view(['GET'])
+def patients(request):
+    """
+    List all code snippets, or create a new snippet.
+    """
+    if not request.user.is_authenticated:
+        return Response(data={"message":"Usuário não autenticado"}, status=status.HTTP_401_UNAUTHORIZED)
+
+    if request.method == 'GET':
+        users = User.objects.filter(is_patient=True)
+        serializer = UserSerializer(users)
+        return Response(serializer.data)
+
 @api_view(['GET', 'POST'])
 def vaccines(request):
     """

@@ -10,6 +10,7 @@ urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('register/', views.auth),
+    path('patients', views.patients),
     path('me/profile', views.profile),
     path('me/vaccines', views.user_vaccines),
     path('me/agendamentos', views.user_agendamentos),
