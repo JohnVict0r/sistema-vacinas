@@ -218,7 +218,7 @@ def agendamentos(request):
         agendamento = Agendamento.objects.filter(pk=request.data['id']).first()
         agendamento.atendido = True
         agendamento.save()
-        serializer = AgendamentoSerializer(agendamentos)
+        serializer = AgendamentoSerializer(agendamento)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     if request.method == 'POST':
