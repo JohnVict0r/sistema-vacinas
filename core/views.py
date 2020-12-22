@@ -35,8 +35,7 @@ def profile(request):
         return Response(data={"message":"Usuário não autenticado"}, status=status.HTTP_401_UNAUTHORIZED)
 
     if request.method == 'GET':
-        user = User.objects.filter(pk=request.user.id)
-        serializer = UserSerializer(user)
+        serializer = UserSerializer(request.user)
         return Response(serializer.data)
 
 @api_view(['GET', 'POST'])
