@@ -49,7 +49,7 @@ class AgendamentoSerializer(serializers.ModelSerializer):
 
 
 class EstabelecimentoAtendimentosSerializer(serializers.ModelSerializer):
-    estabelecimento = serializers.PrimaryKeyRelatedField(read_only=True)
+    estabelecimento = serializers.StringRelatedField(read_only=True)
     horario = serializers.PrimaryKeyRelatedField(read_only=True)
 
     class Meta:
