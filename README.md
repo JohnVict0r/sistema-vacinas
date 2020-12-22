@@ -46,7 +46,7 @@ saúde que tenha disponibilidade de vacinas.
 Clone o projeto e execute os seguintes comandos:
 
 ```shell
-$ git clone [(https://github.com/JohnVict0r/sistema-vacinas.git)](https://github.com/JohnVict0r/sistema-vacinas.git)
+$ git clone https://github.com/JohnVict0r/sistema-vacinas.git
 $ cd sistema-vacinas
 $ pip install -r requirements.txt
 $ cp .env.example .env
