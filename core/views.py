@@ -48,7 +48,7 @@ def patients(request):
 
     if request.method == 'GET':
         users = User.objects.filter(is_patient=True)
-        serializer = UserSerializer(users)
+        serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
 
 @api_view(['GET', 'POST'])
