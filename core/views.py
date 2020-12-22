@@ -201,7 +201,7 @@ def atendimentos(request):
         serializer = EstabelecimentoAtendimentosSerializer(atendimento)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-@api_view(['GET', 'POST'])
+@api_view(['GET', 'POST', 'PUT'])
 def agendamentos(request):
     """
     List all code snippets, or create a new snippet.
