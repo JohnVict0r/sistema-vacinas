@@ -31,7 +31,7 @@ class VaccineSerializer(serializers.HyperlinkedModelSerializer):
 
 class UserVaccinesSerializer(serializers.HyperlinkedModelSerializer):
     user = serializers.PrimaryKeyRelatedField(read_only=True)
-    vaccine = serializers.PrimaryKeyRelatedField(read_only=True)
+    vaccine = serializers.StringRelatedField(read_only=True)
 
     class Meta:
         model = User_Vaccine
